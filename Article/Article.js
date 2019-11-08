@@ -85,7 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Tauan Will Pass The Next Sprint',
+    date: 'November 8th, 2019',
+    firstParagraph: `Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3. Tauan will get a 3.`,
+
+    secondParagraph: `The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan.The sprint will go smoothly for Tauan.The sprint will go smoothly for Tauan.The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan. The sprint will go smoothly for Tauan.`,
+
+    thirdParagraph: `Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals.Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals. Tauan will finish all of the stretch goals.`
+  }   
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +121,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const createCard = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+const card = document.createElement('div');
+const cardTitle = document.createElement('h2');
+const cardDate = document.createElement('p');
+const paragraphOne = document.createElement('p');
+const paragraphTwo = document.createElement('p');
+const paragraphThree = document.createElement('p');
+const expandButton = document.createElement('span');
+
+card.appendChild(cardTitle);
+card.appendChild(cardDate);
+card.appendChild(paragraphOne);
+card.appendChild(paragraphTwo);
+card.appendChild(paragraphThree);
+card.appendChild(expandButton);
+
+// Add class
+card.classList.add('article');
+cardDate.classList.add('date');
+expandButton.classList.add('expandButton')
+
+// Add content
+cardTitle.textContent = title;
+cardDate.textContent = date;
+paragraphOne.textContent = firstParagraph;
+paragraphTwo.textContent = secondParagraph;
+paragraphThree.textContent = thirdParagraph;
+expandButton.textContent = '\u25bc';
+
+// Functionality
+expandButton.addEventListener('click', () => {
+  card.classList.toggle('article-open');
+})
+
+return card;
+}
+
+const parentComponent = document.querySelector('.articles');
+
+data.forEach(info => {
+  parentComponent.appendChild(createCard(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph));
+})
